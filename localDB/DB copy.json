@@ -1,0 +1,11 @@
+{
+    "students" : {
+        "objects" : [],
+        "lastId" : 0
+    },
+    "notes" : [],
+    "currencies" : {
+        "usd" : 1.06
+    },
+    "salaryRate" : 0.25
+}
