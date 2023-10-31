@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody id="datatable-body">
-
+            
         </tbody>
     </table>
 
