@@ -69,7 +69,7 @@ nav ul {
 nav > div {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 nav div > .brand-logo {
@@ -127,9 +127,10 @@ section .content {
     flex-wrap: wrap;
 }
 
-.row .col{
+.row:not(form) .col{
     display: flex;
     align-items: stretch;
+    margin: 1px!important;
 }
 
 .card {
@@ -216,7 +217,7 @@ footer section {
 
 /* ---- medias query ---- */
 
-@media (min-width: 600px){
+@media (min-width: 992px){
     .reverse .text-content {
         padding-left: 30px;
     }
@@ -227,6 +228,7 @@ footer section {
 
     .row:not(form) {
         display: flex;
+        justify-content: space-around;
     }
 }
 

@@ -67,7 +67,9 @@
         <form method="post" class="row" action="">
 
             <?php for($i = 0; $i < $nbStudents; $i++){ ?>
-                <h3>Elève <?= $i+1 ?></h3>
+                <div class="input-field col s12">
+                    <h3>Elève <?= $i+1 ?></h3>
+                </div>
                 <?php for($j = 0; $j < $nbMarks; $j++){ ?>
                     <div class="input-field col s6 m3">
                         <input type="number" required name="marks[<?= $i ?>][<?= $j ?>]">

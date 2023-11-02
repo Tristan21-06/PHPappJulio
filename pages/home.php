@@ -1,5 +1,5 @@
-<section class="row">
-    <div class="col s12 l3">
+<section class="row d-block">
+    <div class="col s12 m12 l12 xl3">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">Gestion des notes des élèves</span>
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 l3">
+    <div class="col s12 m12 l12 xl3">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">Conversion de devise</span>
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col s12 l3">
+    <div class="col s12 m12 l12 xl3">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">Calcul du salaire</span>
