@@ -1,20 +1,3 @@
-let jsonObjects, sendData = {};
-
-if(typeof type != 'undefined'){
-    sendData.type = type;
-}
-
-//write in localDB file
-function writeFile(){
-    sendData[type] = JSON.stringify(jsonObjects);
-    $.ajax({
-        url: "/includes/ajax/writeData.php",
-        data: sendData,
-        success: function(){
-        }
-    });
-}
-
 //utils
 const delay = (delayInms) => {
     return new Promise(resolve => setTimeout(resolve, delayInms));

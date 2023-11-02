@@ -195,12 +195,15 @@ button.red-btn.custom-btn:focus {
 
 .top-actions {
     display: flex;
-    /*justify-content: end;*/
 }
 
 .top-actions button.btn {
     display: flex;
     align-items: center;
+}
+
+.input-field .select-wrapper {
+    width: 100%;
 }
 /* -------- */
 
@@ -222,7 +225,7 @@ footer section {
         padding-right: 30px;
     }
 
-    .row {
+    .row:not(form) {
         display: flex;
     }
 }
