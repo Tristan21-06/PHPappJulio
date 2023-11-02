@@ -1,10 +1,13 @@
 <?php
     $nbStudents = 3;
     $nbMarks = 4;
-    if ($_POST['submit']) {
-        $marks = $_POST['marks'];
-    }
 
+    /**
+     * function sortMarks
+     * sort marks tabs for each student
+     * parameters : array $marks
+     * return : array $marks
+     */
     function sortMarks($marks) {
         for ($j = 0; $j < count($marks); $j++) {
             for ($k = 1; $k < count($marks[$j]); $k++) {
@@ -22,6 +25,12 @@
         return $marks;
     }
 
+    /**
+     * function sumsMarks
+     * get sums for eahc marks of every students
+     * parameters : array $marks
+     * return : array $sums
+     */
     function sumsMarks($marks) {
         $sums = array();
         foreach ($marks as $student) {
@@ -36,6 +45,12 @@
         return $sums;
     }
 
+    /**
+     * function ranksMarks
+     * get the lower and greater marks
+     * parameters : array $marks
+     * return : array $return
+     */
     function ranksMarks($marks) {
         $lower = 100;
         $greater = 0;
@@ -59,10 +74,71 @@
 
         return $return;
     }
+
+    /**
+     * function writeFile
+     * create and write data in a file in outputFiles folder
+     * parameters : array $marks
+     * return : bool $written
+     */
+    function writeFile($marks, $nbStudents, $nbMarks) {
+        $directory = getcwd()."/outputFiles/";
+        $filecount = 1;
+    
+        $files2 = glob( $directory ."*" );
+
+        if( $files2 ) {
+            $filecount = count($files2)+1;
+        }
+
+        $date = date("m-d-y");
+
+        $myfile = fopen($directory . "$filecount-notes_$date.txt", "waxc") or die("Unable to open file!");
+        
+        $txt = " Liste des notes \n";
+
+        foreach(sortMarks($marks) as $key => $student){
+            $txt .= "Eleve " . ($key+1) . " : " . (implode(", ", $student)) . " \n";
+        }
+
+        foreach(ranksMarks($marks) as $key => $obj){
+            $txt .= $obj["sentence"] . " : " . ($obj["mark"]) . " \n";
+        }
+
+        $txt .= "\n Liste des sommes des notes \n";
+        
+        foreach(sumsMarks($marks) as $key => $sum) {
+            $txt .= "Somme des notes de l'eleve " . ($key+1) . " : $sum \n";
+        }
+        $txt .= "Somme totale des notes : " . (array_sum(sumsMarks($marks))) . " \n";
+
+        $txt .= "\n Liste des moyennes des eleves \n";
+
+        foreach(sumsMarks($marks) as $key => $sum){
+            $txt .= "Moyenne de l'eleve " . ($key+1) . " : " . ($sum/$nbMarks) . " \n";
+        }
+        $txt .= "Moyenne totale des notes : " . (array_sum(sumsMarks($marks))/($nbMarks*$nbStudents)) . " \n";
+
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
+    }
+
+    if ($_POST['submit']) {
+        $marks = $_POST['marks'];
+
+        try {
+            writeFile($marks, $nbStudents, $nbMarks);
+            echo "<script>M.toast({html: 'Données sauvegardées dans le dossier `outputFiles`!', classes: 'green'});</script>";
+        } catch (Exception $e) {
+            echo "<script>M.toast({html: 'Impossible de sauvegarder dans un fichier!', classes: 'red'});</script>";
+        }
+        
+    }
 ?>
 
 <section>
-    <div>
+    <div class="form">
         <h2>Formulaire des notes</h2>
         <form method="post" class="row" action="">
 
@@ -103,7 +179,7 @@
 
     </div>
 
-    <div class="marks">
+    <div class="sums">
         <h2>Liste des sommes des notes</h2>
 
         <?php if ($_POST['submit']) { ?>
@@ -119,7 +195,7 @@
 
     </div>
 
-    <div class="marks">
+    <div class="averages">
         <h2>Liste des moyennes des élèves</h2>
 
         <?php if ($_POST['submit']) { ?>
