@@ -60,11 +60,13 @@
     </form>
 
     <h1>Liste de livres</h1>
+    <ul>
     <?php
         foreach ($mappedLivres as $livre) {
     ?>
-        <h2>Le livre qui vient d'être créé est "<?= $livre->getTitre() ?>" avec l'id <?= $livre->getId() ?></h2>
+        <li>Le livre qui vient d'être créé est "<?= $livre->getTitre() ?>" avec l'id <?= $livre->getId() ?></li>
     <?php
         }
     ?>
+    </ul>
 </section>
