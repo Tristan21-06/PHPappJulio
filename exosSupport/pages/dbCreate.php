@@ -1,42 +1,8 @@
 <?php
-
-use Livre as GlobalLivre;
-
-    class Livre {
-        public static int $nbLivres = 0;
-        private $id;
-        private $titre;
-
-        public function __construct() {
-            $this->id = ++self::$nbLivres;
-        }
-
-        public static function construct($titre) {
-            $livre = new self();
-            $livre->setTitre($titre);
-            return $livre;
-        }
-
-        public function setId($id){
-            $this->id = $id;
-        }
-
-        public function getId(){
-            return $this->id;
-        }
-
-        public function setTitre($titre){
-            $this->titre = $titre;
-        }
-
-        public function getTitre(){
-            return $this->titre;
-        }
-    }
+    include_once('classes/Livre.php');
 
     function flushLivre($livre, $db) {
         $sqlInsert = "INSERT INTO Livre (titre) VALUES ('" . $livre->getTitre() . "')";
-
         
         try {
             $resStatement = $db->prepare($sqlInsert);
@@ -59,8 +25,8 @@ use Livre as GlobalLivre;
         die('Erreur : ' . $e->getMessage());
     }
 
-    for ($i = 0; $i < 10; $i++){
-        $livre = Livre::construct("Livre $i");
+    if($_POST['submit']) {
+        $livre = Livre::construct($_POST['title']);
         flushLivre($livre, $db);
     }
 
@@ -82,6 +48,18 @@ use Livre as GlobalLivre;
 ?>
 
 <section>
+
+    <form method="post" class="row" action="">
+        <div class="input-field col s12 m6">
+            <input type="text" id="title" required name="title">
+            <label for="title">Titre : </label>
+        </div>
+        <div class="input-field col s12">
+            <input type="submit" name="submit" class="waves-effect waves-light btn tc-white pointer" value="Valider">
+        </div>
+    </form>
+
+    <h1>Liste de livres</h1>
     <?php
         foreach ($mappedLivres as $livre) {
     ?>

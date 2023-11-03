@@ -1,4 +1,5 @@
 <?php
+    namespace Base;
     $page = $_GET['page'];
     session_start();
 ?>
