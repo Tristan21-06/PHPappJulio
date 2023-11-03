@@ -162,10 +162,12 @@ int currencyConvert() {
             return 0;
         }
 
-        printf("Entrez le nombre à convertir\n");
-        if(scanf("%d", &base)!=1) {
-            printf("Entrée non valide, arrêt du programme \n");
-            return 0;
+        if (choice != 0) {
+            printf("Entrez le nombre à convertir\n");
+            if(scanf("%d", &base)!=1) {
+                printf("Entrée non valide, arrêt du programme : ");
+                return 0;
+            }
         }
 
         switch(choice) {
@@ -205,10 +207,13 @@ int salaryConvert() {
             printf("Choix non valide, arrêt du programme \n");
             return 0;
         }
-        printf("Entrez le nombre à convertir\n");
-        if(scanf("%d", &base)!=1) {
-            printf("Entrée non valide, arrêt du programme \n");
-            return 0;
+
+        if (choice != 0) {
+            printf("Entrez le nombre à convertir : ");
+            if(scanf("%d", &base)!=1) {
+                printf("Entrée non valide, arrêt du programme \n");
+                return 0;
+            }
         }
         switch(choice) {
             case 1:
