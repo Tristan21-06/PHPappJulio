@@ -75,7 +75,6 @@ nav > div {
 nav div > .brand-logo {
     position: relative;
     line-height: normal;
-    right: 50%;
     left: unset!important;
     transform: translateX(50%)!important;
 }
@@ -133,11 +132,16 @@ section .content {
     margin: 1px!important;
 }
 
+.row:not(form):after {
+    content: unset;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    min-height: 250px;
 }
 
 .tc-white, 
@@ -229,6 +233,7 @@ footer section {
     .row:not(form) {
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
     }
 }
 

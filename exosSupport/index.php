@@ -1,5 +1,6 @@
 <?php
     $page = $_GET['page'];
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -7,8 +8,8 @@
     <head>
         <meta charset="UTF-8">
         <?php
-            if(file_exists('includes/metas/'. ($page ? $page : 'helloWorld') .'_metas.php')){
-                include_once('includes/metas/'. ($page ? $page : 'helloWorld') .'_metas.php');
+            if(file_exists('includes/metas/'. ($page ? $page : 'home') .'_metas.php')){
+                include_once('includes/metas/'. ($page ? $page : 'home') .'_metas.php');
             }
         ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +49,7 @@
 
         <main>
             <?php
-                include_once('pages/'. ($page ? $page : 'helloWorld') .'.php');
+                include_once('pages/'. ($page ? $page : 'home') .'.php');
             ?>
         </main>
 
@@ -65,8 +66,8 @@
         <script type="text/javascript" src="assets/js/base.min.js"></script>
         
         <?php
-            if(file_exists('assets/js/'. ($page ? $page : 'helloWorld') .'.min.js')){
-                echo '<script type="text/javascript" src="assets/js/'. ($page ? $page : 'helloWorld') .'.min.js"></script>';
+            if(file_exists('assets/js/'. ($page ? $page : 'home') .'.min.js')){
+                echo '<script type="text/javascript" src="assets/js/'. ($page ? $page : 'home') .'.min.js"></script>';
             }
         ?>
     </body>
